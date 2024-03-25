@@ -15,12 +15,13 @@ public class ClueLess {
     List<Message> messages = new ArrayList<Message>();
 
     Message m1 = new Message(1, "Player 1 has moved into a new room.");
-    Message m2 = new Message(1, "Player 1 has made an accusation.");
-    Message m3 = new Message(1, "Player 1 was right.");
+    Message m2 = new Message(1, "Player 2 has made an accusation.");
+    Message m3 = new Message(1, "Player 3 was right and won the game!");
 
     @GetMapping(path = "/message/{id}")
     @ResponseBody
     public ResponseEntity getMessages (@PathVariable("id") Long id) {
+        System.out.println("Player " + id + " has requested the current game state.");
         return new ResponseEntity<>(List.of(m1, m2, m3), HttpStatus.OK);
     }
 
