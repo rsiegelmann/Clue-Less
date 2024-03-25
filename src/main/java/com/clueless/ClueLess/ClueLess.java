@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ClueLess {
 
     List<Message> messages = new ArrayList<Message>();
@@ -17,7 +18,8 @@ public class ClueLess {
     Message m2 = new Message(1, "Player 1 has made an accusation.");
     Message m3 = new Message(1, "Player 1 was right.");
 
-    @GetMapping("/message/{id}")
+    @GetMapping(path = "/message/{id}")
+    @ResponseBody
     public ResponseEntity getMessages (@PathVariable("id") Long id) {
         return new ResponseEntity<>(List.of(m1, m2, m3), HttpStatus.OK);
     }
